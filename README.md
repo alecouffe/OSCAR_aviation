@@ -8,6 +8,8 @@ First, download OSCAR v3.3, the version on which OSCAR-Aviation is built (https:
 git clone --branch v3.3 https://github.com/tgasser/OSCAR
 ```
 
+OSCAR is described in: Gasser, T., P. Ciais, O. Boucher, Y. Quilcaille, M. Tortora, L. Bopp, and D. Hauglustaine: The compact Earth system model OSCAR v2.2: description and first results, Geosci. Model Dev., 10, 271–319, https://doi.org/10.5194/gmd-10-271-2017, 2017.
+
 Then, merge the files in each folder with the same name **from OSCAR-Aviation to OSCAR**.  
 For example, in `core_fct`, copy `fct_loadP_av.py` from OSCAR-Aviation to OSCAR.  
 In `input_data`, copy `drivers_av` from OSCAR-Aviation to OSCAR. Etc.  
