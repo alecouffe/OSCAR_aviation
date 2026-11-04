@@ -1,0 +1,8 @@
+*.pyc
+**/__pycache__/
+
+input_data/parameters/from_OSCARv2/aerchem_ACCMIP_original.nc
+
+
+
+
