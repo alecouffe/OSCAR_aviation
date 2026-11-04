@@ -54,6 +54,9 @@ These plane (P) and noplane (NP)[^2] functions are one example of how OSCAR-Avia
 - `fuel_scaling_factor_for_rf_av_ssp_2025_2100.nc`: same for SSP
 - `fuel_scaling_factor_for_rf_av_ltag_2025_2070.nc`: same for LTAG
 
+# License
+OSCAR-Aviation is distributed under the CeCILL 2.1 license, like OSCAR (see `LICENSE`).
+
 # Contact
 Audrey Lecouffe: alecouffe@ipsl.fr
 
