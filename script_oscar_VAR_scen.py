@@ -6,7 +6,7 @@ RUN OSCAR-Aviation - Version 3.3 - @author: alecouffe
 import xarray as xr
 
 ## being  in the OSCAR folder, import the model
-from core_fct.mod_process_av_efficacy import OSCAR
+from core_fct.mod_process_av import OSCAR
 
 '''
 ## load primary parameters
