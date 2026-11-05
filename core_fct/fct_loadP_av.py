@@ -1314,12 +1314,12 @@ def load_RF_aviation(**useless):
 
     ## H2Os ERF in 2018
     ## Lee et al., 2021; https://doi.org/10.1016/j.atmosenv.2020.117834 
-    Par['erf_H2Os_av'] = xr.DataArray(2.0, attrs={'units':'mw/m2'}) 
+    Par['erf_H2Os_av'] = xr.DataArray(2.0, attrs={'units':'mW m-2'}) 
     ## Contrails RF in 2018
     ## Lee et al., 2021; https://doi.org/10.1016/j.atmosenv.2020.117834 
-    Par['rf_contr'] = xr.DataArray(111.4, attrs={'units':'mw/m2'})
+    Par['rf_contr'] = xr.DataArray(111.4, attrs={'units':'mW m-2'})
     ## O3t ERF of ACACIA in 2018
-    Par['erf_O3t_av'] = xr.DataArray([27.63, 33.80, 42.18, 43.02, 55.99], dims='mod_erf_O3t_acacia', attrs={'units':'mw/m2'})
+    Par['erf_O3t_av'] = xr.DataArray([27.63, 33.80, 42.18, 43.02, 55.99], dims='mod_erf_O3t_acacia', attrs={'units':'mW m-2'})
 
     ## return
     return Par

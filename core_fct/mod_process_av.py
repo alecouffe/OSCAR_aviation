@@ -84,7 +84,7 @@ OSCAR = Model('OSCAR_v3')
 PgC_to_TgC = 1E3
 Wyr_to_ZJ = 3600*24*365.25 / 1E21
 Mha_to_m2 = 1E10
-
+mW_to_W = 1E-3
 ## other values
 A_Earth = 510072E9 # m2
 
@@ -1157,7 +1157,7 @@ OSCAR.process('RF_H2Os', ('RF_CH4', 'factor_RF_H2Os_av'),
     units='W m-2')
 
 def Eq__RF_H2Os(Var, Par):
-    return Par.k_rf_H2Os * 0.050/0.544 * Var.RF_CH4 + Var.factor_RF_H2Os_av * Par.erf_H2Os_av
+    return Par.k_rf_H2Os * 0.050/0.544 * Var.RF_CH4 + Var.factor_RF_H2Os_av * Par.erf_H2Os_av * mW_to_W
 
 ##################################################
 ##   4. NITROUS OXIDE
@@ -1357,7 +1357,7 @@ OSCAR.process('RF_O3t', ('D_O3t', 'factor_RF_O3t_av'),
     units='W m-2')
 
 def Eq__RF_O3t(Var, Par):
-    return Par.rf_O3t * Var.D_O3t + Var.factor_RF_O3t_av * Par.erf_O3t_av
+    return Par.rf_O3t * Var.D_O3t + Var.factor_RF_O3t_av * Par.erf_O3t_av * mW_to_W
 
 ## tropospheric O3 radiative forcing + Aircraft RF_O3t_av (_warm, with efficacies)
 OSCAR.process('RF_O3t_warm', ('D_O3t', 'factor_RF_O3t_av'),
@@ -1366,7 +1366,7 @@ OSCAR.process('RF_O3t_warm', ('D_O3t', 'factor_RF_O3t_av'),
 
 def Eq__RF_O3t_warm(Var, Par):
     w_warm_O3t = 1
-    return Par.rf_O3t * Var.D_O3t + (Var.factor_RF_O3t_av * Par.erf_O3t_av * w_warm_O3t)
+    return Par.rf_O3t * Var.D_O3t + (Var.factor_RF_O3t_av * Par.erf_O3t_av * mW_to_W * w_warm_O3t)
 
 
 ##==================
@@ -1793,7 +1793,8 @@ OSCAR.process('RF_slcf', ('RF_O3t', 'RF_strat', 'RF_AERtot', 'factor_RF_contr'),
     units='W m-2')
 
 def Eq__RF_slcf(Var, Par):
-    return Var.RF_O3t + Var.RF_strat + Var.RF_AERtot + (Var.factor_RF_contr * Par.rf_contr * Par.erf_rf_contr)
+    return Var.RF_O3t + Var.RF_strat + Var.RF_AERtot + (Var.factor_RF_contr * Par.rf_contr * mW_to_W * Par.erf_rf_contr)
+
 
 
 ## radiative forcing of all SLCFs + Aviation (_warm, with efficacies)
@@ -1802,7 +1803,7 @@ OSCAR.process('RF_slcf_warm', ('RF_O3t_warm', 'RF_strat', 'RF_AERtot', 'factor_R
     units='W m-2')
 
 def Eq__RF_slcf_warm(Var, Par):
-    return Var.RF_O3t_warm + Var.RF_strat + Var.RF_AERtot + (Var.factor_RF_contr * Par.rf_contr * Par.erf_rf_contr * Par.w_warm_contr)
+    return Var.RF_O3t_warm + Var.RF_strat + Var.RF_AERtot + (Var.factor_RF_contr * Par.rf_contr * mW_to_W * Par.erf_rf_contr * Par.w_warm_contr)
 
 
 ## radiative forcing of albedo effects
@@ -1844,7 +1845,7 @@ def Eq__RF_atm(Var, Par):
     RF_atm_strat = Par.p_atm_strat * Var.RF_strat
     RF_atm_scatter = Par.p_atm_scatter * (Var.RF_scatter + Var.RF_volc)
     RF_atm_absorb = Par.p_atm_absorb * Var.RF_absorb
-    RF_atm_cloud = Par.p_atm_cloud * (Var.RF_cloud + (Var.factor_RF_contr * Par.rf_contr * Par.erf_rf_contr))
+    RF_atm_cloud = Par.p_atm_cloud * (Var.RF_cloud + (Var.factor_RF_contr * Par.rf_contr * mW_to_W * Par.erf_rf_contr))
     RF_atm_alb = Par.p_atm_alb * Var.RF_alb
     RF_atm_solar = Par.p_atm_solar * Var.RF_solar
     return RF_atm_CO2 + RF_atm_nonCO2 + RF_atm_O3t + RF_atm_strat + RF_atm_scatter + RF_atm_absorb + RF_atm_cloud + RF_atm_alb + RF_atm_solar
